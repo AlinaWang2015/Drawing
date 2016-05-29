@@ -124,7 +124,7 @@ namespace ShapeFileReader
             }
         }
 
-        public void ChangeRecordsToGeometry()
+        public List<Geometry> ChangeRecordsToGeometry()
         {
             string filepath = System.IO.Path.HasExtension(FilePath) ? FilePath.Substring(0, FilePath.Length - (System.IO.Path.GetExtension(FilePath).Length)) : FilePath;
             string shpfilepath = filepath + ".shp";
@@ -132,14 +132,17 @@ namespace ShapeFileReader
             FileStream fs = new FileStream(shpfilepath, FileMode.Open, FileAccess.Read);
             BinaryReader binaryReader = new BinaryReader(fs);
             binaryReader.BaseStream.Seek(100, SeekOrigin.Current);
+
+            List<Geometry> geos = new List<Geometry>();
             MainFile mainFile = new MainFile(shpfilepath);
             List<Polyline> polylines = new List<Polyline>();
 
             while (binaryReader.BaseStream.Position < binaryReader.BaseStream.Length)
             {
-                mainFile.RecordNumber = ChangbyteOrder(binaryReader.ReadInt32());
+                Geometry geo = new Geometry(); 
+                geo.Id = ChangbyteOrder(binaryReader.ReadInt32());
                 mainFile.ContentLength = ChangbyteOrder(binaryReader.ReadInt32());
-                mainFile.ContentShape = binaryReader.ReadInt32();
+                geo.GeometryType = binaryReader.ReadInt32();
                 mainFile.RecordBox[0] = binaryReader.ReadDouble();
                 mainFile.RecordBox[1] = binaryReader.ReadDouble();
                 mainFile.RecordBox[2] = binaryReader.ReadDouble();
@@ -147,12 +150,12 @@ namespace ShapeFileReader
                 int numParts = binaryReader.ReadInt32();
                 int numPoints = binaryReader.ReadInt32();
                 
-                switch(mainFile.ContentShape)
+                switch(geo.GeometryType)
                 {
                     case 3:
                         for (int i = 0; i < numParts; i++)
                         {
-                            mainFile.Parts.Add(binaryReader.ReadInt32());
+                            geo.Parts.Add(binaryReader.ReadInt32());
                         }
 
                         for (int i = 0; i < numPoints; i++)
@@ -160,11 +163,10 @@ namespace ShapeFileReader
                             float x = (float)binaryReader.ReadDouble();
                             float y = (float)binaryReader.ReadDouble();
                             Point point = new Point(x, y);
-                            mainFile.Points.Add(point);
+                            geo.Points.Add(point);
                         }
-                        Polyline polyline = new Polyline(mainFile.Parts, mainFile.Points);
-                        
-                        polylines.Add(polyline);
+
+                        geos.Add(geo);
                         break;
                     default:
                         break;
@@ -172,7 +174,7 @@ namespace ShapeFileReader
 
 
 
-            }
+            } return geos;
         }
 
         private int ChangbyteOrder(int i)

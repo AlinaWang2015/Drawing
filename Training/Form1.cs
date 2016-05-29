@@ -37,6 +37,28 @@ namespace Training
             return str.ToString();
         }
 
+        public string ShowGeometry(ShapeFile shapefile)
+        {
+            var geos = shapefile.ChangeRecordsToGeometry();
+            StringBuilder str = new StringBuilder();
+            string s = string.Format("");
+            s = string.Format("输出geometry的属性：");
+            str.AppendLine(s);
+            foreach(var geo in geos)
+            {
+                s = string.Format("geometry的编号：{0}", geo.Id);
+                str.AppendLine(s);
+                s = string.Format("geometry类型：{0}", geo.GeometryType);
+                str.AppendLine(s);
+                s = string.Format("geometry的部分的数目：{0}", geo.Parts.Count);
+                str.AppendLine(s);
+                s = string.Format("geometry的点的总数目：{0}", geo.Points.Count);
+                str.AppendLine(s);
+            }
+            
+            return str.ToString();
+        }
+
         private void btnopen_Click(object sender, EventArgs e)
         {
             OpenFileDialog openflg = new OpenFileDialog();
@@ -49,9 +71,10 @@ namespace Training
             }
             ShapeFile shapefile = new ShapeFile(filepath);
             shapefile.LoadFileFeature();
-            string show = ShowFile(shapefile);
+            string showFile = ShowFile(shapefile);
+            string showGeometry = ShowGeometry(shapefile);
 
-            txtshow.Text = show;
+            txtshow.Text = showFile + showGeometry;
         }
     }
 }

@@ -10,6 +10,8 @@ namespace ShapeFileReader
     {
         private List<int> parts = new List<int> ();
         private List<Point> points = new List<Point> ();
+        private int id;
+        private int geometryType;
 
         public List<int> Parts
         {
@@ -23,6 +25,20 @@ namespace ShapeFileReader
             get { return points; }
 
             set { points = value; }
+        }
+
+        public int Id
+        {
+            get { return id; }
+
+            set { id = value; }
+        }
+
+        public int GeometryType
+        {
+            get { return geometryType; }
+
+            set { geometryType = value; }
         }
 
         public Geometry() { }
