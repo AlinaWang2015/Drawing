@@ -4,25 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShapeFileReader
+namespace GeometryPainter
 {
-    public class Point
+    public class Point : Geometry
     {
         private float x;
         private float y;
 
         public float X
         {
-            get{ return x; }
+            get { return x; }
 
-            set{ x = value; }
+            set { x = value; }
         }
 
         public float Y
         {
-            get{ return y; }
+            get { return y; }
 
-            set{ y = value; }
+            set { y = value; }
         }
 
         public Point() { }
@@ -32,5 +32,6 @@ namespace ShapeFileReader
             this.x = x;
             this.y = y;
         }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using ShapeFileReader;
+using GeometryPainter;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -48,15 +49,38 @@ namespace Training
             {
                 s = string.Format("geometry的编号：{0}", geo.Id);
                 str.AppendLine(s);
-                s = string.Format("geometry类型：{0}", geo.GeometryType);
+                s = string.Format("几何类型：{0}", geo.GeometryType);
                 str.AppendLine(s);
                 s = string.Format("geometry的部分的数目：{0}", geo.Parts.Count);
                 str.AppendLine(s);
                 s = string.Format("geometry的点的总数目：{0}", geo.Points.Count);
                 str.AppendLine(s);
+                foreach(var point in geo.Points)
+                {
+                    s = string.Format("顶点坐标为：({0},{1})", point.X,point.Y);
+                    str.AppendLine(s);
+                }
             }
             
             return str.ToString();
+        }
+
+        public void DrawGeometry(ShapeFile shapefile)
+        {
+            var geos = shapefile.ChangeRecordsToGeometry();
+            Painter painter = new Painter();
+           // Pen pen = new 
+
+            foreach (var geo in geos)
+            {
+                switch(geo.GeometryType)
+                {
+                    case 1:
+                        break;
+                    case 3:
+                        break;
+                }
+            }
         }
 
         private void btnopen_Click(object sender, EventArgs e)

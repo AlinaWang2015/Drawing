@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawingBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawingBoard.Designer.cs">
+      <DependentUpon>DrawingBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DrawingBoard.resx">
+      <DependentUpon>DrawingBoard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,6 +89,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GeometryPainter\GeometryPainter.csproj">
+      <Project>{589cb0e3-4b64-4de2-b6ce-18fe0c8e5fc9}</Project>
+      <Name>GeometryPainter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShapeFileReader\ShapeFileReader.csproj">
       <Project>{e38e0be7-326b-47f4-bddd-0bdeef9e4e5b}</Project>
       <Name>ShapeFileReader</Name>
