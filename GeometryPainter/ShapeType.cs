@@ -5,7 +5,13 @@ using System.Text;
 
 namespace GeometryPainter
 {
-    public class ShapeType
+    public enum ShapeType
     {
+        None,
+        Point,
+        Circle,
+        Polyline,
+        Rect,
+        Polygon,
     }
 }
