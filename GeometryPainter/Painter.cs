@@ -11,11 +11,9 @@ namespace GeometryPainter
     {
         public Painter () { }
 
-        protected void DrawPoint(Style style, Canvas canvas, PointF point)
+        protected void DrawPoint(Style style, Bitmap canvas, PointF point)
         {
-            int width = (int)canvas.Width;
-            int high = (int)canvas.Higth;
-            Bitmap bitmap = new Bitmap(width,high);
+            
             Graphics gc = Graphics.FromImage(bitmap);
             Pen pen = new Pen(style.BurushColor, style.BrushWidth);
 
