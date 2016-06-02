@@ -8,29 +8,13 @@ namespace GeometryPainter
 {
     public class Polyline : Geometry
     {
-        private List<Point> verticesBox = new List<Point> ();
-        private List<int> partsBox = new List<int> ();
+        internal Polyline() { }
 
-        public List<Point> VerticesBox
+        public Polyline(string id, List<Vertex> verticesBox, List<int> partsBox)
         {
-            get { return verticesBox; }
-
-            set { verticesBox = value; }
-        }
-
-        public List<int> PartsBox
-        {
-            get { return partsBox; }
-
-            set { partsBox = value; }
-        }
-
-        public Polyline() { }
-
-        public Polyline(List<Point> verticesBox, List<int> partsBox)
-        {
-            this.verticesBox = verticesBox;
-            this.partsBox = partsBox;
+            this.Id = id;
+            this.VertexBox = verticesBox;
+            this.PartsBox = partsBox;
         }
     }
 }

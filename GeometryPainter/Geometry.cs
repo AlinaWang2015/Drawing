@@ -8,44 +8,44 @@ namespace GeometryPainter
 {
     public class Geometry
     {
-        private List<int> parts = new List<int>();
-        private List<Point> points = new List<Point>();
-        private int id;
-        private int geometryType;
+        private string id;
+        private List<Vertex> vertexBox = new List<Vertex>();
+        private List<int> partsBox = new List<int>();
 
-        public List<int> Parts
-        {
-            get { return parts; }
-
-            set { parts = value; }
-        }
-
-        public List<Point> Points
-        {
-            get { return points; }
-
-            set { points = value; }
-        }
-
-        public int Id
+        public string Id
         {
             get { return id; }
 
-            set { id = value; }
+            protected set { id = value; }
         }
 
-        public int GeometryType
+        public List<Vertex> VertexBox
         {
-            get { return geometryType; }
+            get { return vertexBox; }
 
-            set { geometryType = value; }
+            protected set { vertexBox = value; }
+        }
+
+        public List<int> PartsBox
+        {
+            get { return partsBox; }
+
+            protected set { partsBox = value; }
         }
 
         public Geometry() { }
 
-        public Geometry(List<Point> points)
+        public Geometry(string id )
         {
-            this.points = points;
+            this.id = id;
+            
+        }
+
+        public Geometry( string id, List<Vertex> verticesBox, List<int> partsBox)
+        {
+            this.Id = id;
+            this.vertexBox = verticesBox;
+            this.partsBox = partsBox;
         }
     }
 }

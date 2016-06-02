@@ -51,9 +51,9 @@ namespace Training
                 str.AppendLine(s);
                 s = string.Format("几何类型：{0}", geo.GeometryType);
                 str.AppendLine(s);
-                s = string.Format("geometry的部分的数目：{0}", geo.Parts.Count);
-                str.AppendLine(s);
-                s = string.Format("geometry的点的总数目：{0}", geo.Points.Count);
+                //s = string.Format("geometry的部分的数目：{0}", geo.Parts.Count);
+               // str.AppendLine(s);
+                s = string.Format("geometry的顶点的总数目：{0}", geo.Points.Count);
                 str.AppendLine(s);
                 foreach(var point in geo.Points)
                 {

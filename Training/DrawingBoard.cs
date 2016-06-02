@@ -24,8 +24,21 @@ namespace Training
             Canvas canvas = new Canvas();
             Style style = new Style();
 
-            painter.draw()
+            //painter.draw(style,canvas,shapetype,points);
 
+        }
+
+        // draw the point
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Graphics graphics = this.CreateGraphics();
+            Painter painter = new Painter();
+            Canvas canvas = new Canvas();
+            Style style = new Style();
+            Geometry shapetype = new Geometry();
+            //shapetype.GeometryType = 1;
+                
+           // painter.draw(style, canvas, shapetype, points);
         }
     }
 }

@@ -108,6 +108,7 @@
   <ItemGroup>
     <Content Include="Html\painter.html" />
     <Content Include="scripts\Geometry.js" />
+    <Content Include="Test\GP.js" />
     <Content Include="scripts\Painter.js" />
     <Content Include="scripts\ShapeFileReader.js" />
     <Content Include="scripts\ShowFile.js" />

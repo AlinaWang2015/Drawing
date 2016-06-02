@@ -8,29 +8,13 @@ namespace GeometryPainter
 {
     public class Point : Geometry
     {
-        private float x;
-        private float y;
+        internal Point() { }
 
-        public float X
+        public Point(string id, List<Vertex> verticesBox, List<int> partsBox)
         {
-            get { return x; }
-
-            set { x = value; }
-        }
-
-        public float Y
-        {
-            get { return y; }
-
-            set { y = value; }
-        }
-
-        public Point() { }
-
-        public Point(float x, float y)
-        {
-            this.x = x;
-            this.y = y;
+            this.Id = id;
+            this.VertexBox = verticesBox;
+            this.PartsBox = partsBox;
         }
 
     }
