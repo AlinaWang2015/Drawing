@@ -122,8 +122,6 @@ namespace GeometryPainter
 
         public void Draw(Style style,Canvas canvas, Geometry geometry)
         {
-            
-
             ShapeType type = ShapeType.Point; var sht = geometry.GetType();
             ShapeType po = sht;
             
