@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace GeometryPainter
 {
-    public class Painter
+    public static class Painter
     {
-        public Painter () { }
-
-        protected void DrawPoint(Style style, Canvas canvas, PointF point)
+        public static void DrawPoint( Style style, Canvas canvas, Point point)
         {
 
             //show the canvas
@@ -30,71 +28,52 @@ namespace GeometryPainter
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
 
-            graphics.DrawLine(pen, point, point);
-        }
-
-        protected void DrawPolyline(Style style, Canvas canvas, List<Vertex> points)
-        {
-            //show the canvas
-            int width = (int)canvas.Width;
-            int high = (int)canvas.Higth;
-            Bitmap originImg = new Bitmap(width, high);
-            Graphics graphics = Graphics.FromImage(originImg);
-
-            //set the canvas background   
-            graphics.Clear(canvas.Background);
-            Image finishImg = (Image)originImg.Clone();
-
-            //set the pen
-            Pen pen = new Pen(style.BurushColor, style.BrushWidth);
-            pen.StartCap = LineCap.Round;
-            pen.EndCap = LineCap.Round;
-            
-            PointF startpoint = new PointF(points[0].X, points[0].Y);
-            PointF endpoint = new PointF(points[1].X, points[1].Y);
-
-            graphics.DrawLine(pen, startpoint, endpoint);
-        }
-
-        protected void DrawPolygon(Style style, Canvas canvas, List<Vertex> points)
-        {
-            //show the canvas
-            int width = (int)canvas.Width;
-            int high = (int)canvas.Higth;
-            Bitmap originImg = new Bitmap(width, high);
-            Graphics graphics = Graphics.FromImage(originImg);
-
-            //set the canvas background   
-            graphics.Clear(canvas.Background);
-            Image finishImg = (Image)originImg.Clone();
-
-            //set the pen
-            Pen pen = new Pen(style.BurushColor, style.BrushWidth);
-            pen.StartCap = LineCap.Round;
-            pen.EndCap = LineCap.Round;
-
-
-            PointF[] tempoint = new PointF[points.Count];
-            for(int i=0; i<points.Count; i++)
+            for(int i=0;i<point.PartsBox.Count;i++)
             {
-                tempoint[i] = new PointF(points[i].X,points[i].Y);
+                for(int j=0;j<point.PartsBox[i];j++)
+                {
+                    float x = point.VertexBox[j].X;
+                    float y = point.VertexBox[j].Y;
+                    PointF tempoint =new PointF(x,y);
+
+                    graphics.DrawLine(pen, tempoint, tempoint);
+                }
             }
             
-            graphics.DrawPolygon(pen, tempoint);
         }
 
-        protected void DrawCircle (Style style, Canvas canvas, float x, float y, float radius)
+        public static void DrawPolyline(Style style, Canvas canvas, Polyline polyline)
         {
+            //show the canvas
             int width = (int)canvas.Width;
             int high = (int)canvas.Higth;
-            Bitmap bitmap = new Bitmap(width, high);
-            Graphics gc = Graphics.FromImage(bitmap);
-            Pen pen = new Pen(style.BurushColor, style.BrushWidth);
+            Bitmap originImg = new Bitmap(width, high);
+            Graphics graphics = Graphics.FromImage(originImg);
 
-            gc.DrawEllipse(pen, x, y, 2*radius, 2*radius);
+            //set the canvas background   
+            graphics.Clear(canvas.Background);
+           // Image finishImg = (Image)originImg.Clone();
+
+            //set the pen
+            Pen pen = new Pen(style.BurushColor, style.BrushWidth);
+            pen.StartCap = LineCap.Round;
+            pen.EndCap = LineCap.Round;
+
+            for (int i = 0; i < polyline.PartsBox.Count; i++)
+            {
+                PointF[] tempoints = new PointF[polyline.PartsBox[i]];
+                for (int j = 0; j < polyline.PartsBox[i]; j++)
+                {
+                    PointF tempoint = new PointF(polyline.VertexBox[j].X, polyline.VertexBox[j].Y);
+                    tempoints[j] = tempoint;
+                }
+
+                graphics.DrawLines(pen,tempoints);
+            }
+            
         }
 
-        protected void DrawCircle(Style style, Canvas canvas, List<Vertex> points)
+        public static void DrawPolygon(Style style, Canvas canvas, Polygon polygon)
         {
             //show the canvas
             int width = (int)canvas.Width;
@@ -111,38 +90,47 @@ namespace GeometryPainter
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
 
-            PointF center = new PointF(points[0].X, points[0].Y);
-            float temX = (center.X - points[1].X) * (center.X - points[1].X);
-            float temY = (center.Y - points[1].Y) * (center.Y - points[1].Y);
-            float radius =(float) Math.Sqrt(temX + temY);
-            
-            
-            graphics.DrawEllipse(pen, center.X, center.Y, 2 * radius, 2 * radius);
-        }
 
-        public void Draw(Style style,Canvas canvas, Geometry geometry)
-        {
-            ShapeType type = ShapeType.Point; var sht = geometry.GetType();
-            ShapeType po = sht;
-            
-            switch (type)
+            for (int i = 0; i < polygon.PartsBox.Count; i++)
             {
-                case 1:
-                    DrawPoint(geometry.VertexBox,geometry.PartsBox);
-                    break;
-                case 2:
-                    DrawCircle(geometry.VertexBox);
-                    break;
-                case 3:
-                    DrawPolyline(geometry.VertexBox);
-                    break;
-                case 5:
-                    DrawPolygon( geometry.VertexBox);
-                    break;
-                
-                default:
-                    break;
+                PointF[] tempoints = new PointF[polygon.PartsBox[i]];
+                for (int j = 0; j < polygon.PartsBox[i]; j++)
+                {
+                    PointF tempoint = new PointF(polygon.VertexBox[j].X, polygon.VertexBox[j].Y);
+                    tempoints[j] = tempoint;
+                }
+
+                graphics.DrawPolygon (pen, tempoints);
             }
         }
+
+        public static void DrawCircle(Style style, Canvas canvas, Circle circle)
+        {
+            //show the canvas
+            int width = (int)canvas.Width;
+            int high = (int)canvas.Higth;
+            Bitmap originImg = new Bitmap(width, high);
+            Graphics graphics = Graphics.FromImage(originImg);
+
+            //set the canvas background   
+            graphics.Clear(canvas.Background);
+            Image finishImg = (Image)originImg.Clone();
+
+            //set the pen
+            Pen pen = new Pen(style.BurushColor, style.BrushWidth);
+            pen.StartCap = LineCap.Round;
+            pen.EndCap = LineCap.Round;
+
+            PointF center = new PointF(circle.Center.X, circle.Center.Y);
+            //float temX = (center.X - points[1].X) * (center.X - points[1].X);
+            //float temY = (center.Y - points[1].Y) * (center.Y - points[1].Y);
+            //float radius = (float)Math.Sqrt(temX + temY);
+            
+            graphics.DrawEllipse(pen, center.X, center.Y, 2 * circle.Radius, 2 * circle.Radius);
+            
+        }
+
+
+
     }
 }

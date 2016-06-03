@@ -8,16 +8,36 @@ namespace GeometryPainter
 {
     public class Circle:Geometry
     {
+        private Vertex center;
+        private float radius;
+
+        public Vertex Center
+        {
+            get { return center; }
+
+            set { center = value; }
+        }
+
+        public float Radius
+        {
+            get { return radius; }
+
+            set { radius = value; }
+        }
+
         internal Circle () { }
 
         public Circle( List<Vertex> center, List<float> radius)
         {
             this.VertexBox = center;
             
-            for(int i=0; i<center.Count;i++)
-            {
-                this.PartsBox[i] = 1;
-            }
+
+        }
+
+        public Circle(Vertex center, float radius)
+        {
+            this.center = center;
+            this.radius = radius;
         }
     }
 }

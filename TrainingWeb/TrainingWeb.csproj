@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Html\MyPainter.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -107,11 +108,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Html\painter.html" />
-    <Content Include="scripts\Geometry.js" />
+    <Content Include="Test\GeometryPainter.js" />
     <Content Include="Test\GP.js" />
     <Content Include="scripts\Painter.js" />
-    <Content Include="scripts\ShapeFileReader.js" />
     <Content Include="scripts\ShowFile.js" />
+    <Content Include="Test\GP2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -2,17 +2,17 @@
 <html>
 <head>
     <title>画图板</title>
-    <script src="../Test/GP.js">
+    <script src="../Test/GeometryPainter.js">
         
     </script>
 	<meta charset="utf-8" />
 </head>
 <body>
-   <canvas id="canvas" width="500" height="500" >
+   
        
-   </canvas>
     <input type="button" value="画线" id="draw" name="" onclick="painter.draw(cir)" />
     <script>
+        
         var v1 = new Vertex(102, 101);
         var v2 = new Vertex(0, 214);
         var v3 = new Vertex(27, 21);
@@ -20,8 +20,8 @@
         var point = new Point(v1);
         var polylgon = new Polygon([v1, v2, v3]);
         var cir = new Circle(v1, 100);
-        var canvas = document.getElementById("canvas");
-        var painter = new Painter(canvas);
+        var canvas = Drawing.PainterCanvas(500, 500, '#000');
+        var painter = new Drawing.Painter.prototype.draw(canvas);
     </script>
 </body>
 </html>

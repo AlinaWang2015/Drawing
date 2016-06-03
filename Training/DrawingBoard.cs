@@ -20,7 +20,7 @@ namespace Training
 
         public void Draw()
         {
-            Painter painter = new Painter();
+            //Painter painter = new Painter();
             Canvas canvas = new Canvas();
             Style style = new Style();
 
@@ -32,7 +32,7 @@ namespace Training
         private void button1_Click(object sender, EventArgs e)
         {
             Graphics graphics = this.CreateGraphics();
-            Painter painter = new Painter();
+           // Painter painter = new Painter();
             Canvas canvas = new Canvas();
             Style style = new Style();
             Geometry shapetype = new Geometry();

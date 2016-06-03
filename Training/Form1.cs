@@ -68,7 +68,7 @@ namespace Training
         public void DrawGeometry(ShapeFile shapefile)
         {
             var geos = shapefile.ChangeRecordsToGeometry();
-            Painter painter = new Painter();
+            //Painter painter = new Painter();
            // Pen pen = new 
 
             foreach (var geo in geos)
@@ -99,6 +99,26 @@ namespace Training
             string showGeometry = ShowGeometry(shapefile);
 
             txtshow.Text = showFile + showGeometry;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Canvas canvas = new Canvas();
+            Style style = new Style();
+
+            List<Vertex> verticesBox = new List<Vertex>();
+            var v1 = new Vertex(102, 101);
+            var v2 = new Vertex(0, 214);
+            var v3 = new Vertex(27, 21);
+            verticesBox.Add(v1);verticesBox.Add(v2);verticesBox.Add(v3);
+
+            List<int> partsBox = new List<int>();
+            partsBox.Add(3);
+
+
+
+            GeometryPainter.Polyline polyline = new GeometryPainter.Polyline( "1",  verticesBox,  partsBox);
+            Painter.DrawPolyline( style, canvas, polyline);
         }
     }
 }
