@@ -1,4 +1,9 @@
-﻿var PointGeometry = {
+﻿var Vertex = {
+    x:null,
+    y:null
+}
+
+var PointGeometry = {
     vertexBox: [],
     partsBox: []
 }
