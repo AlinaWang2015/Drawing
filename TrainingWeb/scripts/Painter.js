@@ -1,26 +1,25 @@
-﻿var Vertex = {
-    x:null,
-    y:null
+﻿Vertex = function(x,y) {
+    this.x = x;
+    this.y = y;
 }
 
-var PointGeometry = {
-    vertexBox: [],
-    partsBox: []
+PointGeometry = function(vertexBox){
+    this.vertexBox = vertexBox;
 }
 
-var PolylineGeometry = {
-    vertexBox: [],
-    partsBox: []
+PolylineGeometry = function(vertexBox,partsBox){
+    this.vertexBox = vertexBox;
+    this.partsBox = partsBox;
 }
 
-var PolygonGeometry = {
-    vertex: [],
-    parts: []
+PolygonGeometry = function(vertexBox,partsBox){
+    this.vertexBox = vertexBox;
+    this.partsBox = partsBox;
 }
 
-var CircleGeometry = {
-    centter: vertex,
-    radius: null
+CircleGeometry = function(center,radius){
+    this.centter = center;
+    this.radius = radius;
 }
 
 var Geoemtry = {
@@ -29,33 +28,50 @@ var Geoemtry = {
     partsBox: []
 }
 
-var Style = {
-    
+Style = function(penColor,penWidth){
+    this.penColor = penColor;
+    this.penWidth = penWidth;
 
 }
 
-var Canvas = {
-    Higth:null,
-    Width:null,
-    Background:null
+function Canvas(height, width, background) {
+
+    var mycanvas = document.createElement("canvas");
+    mycanvas.id = "mycanvas";
+    mycanvas.width = width;
+    mycanvas.height = height;
+    mycanvas.style.background = background;
+    document.body.appendChild(mycanvas)
+
 }
 
-function Canvas(higth,width,background){
-    this.Higth = higth;
-    this.Width = width;
-    this.Background = background;
-}
+function Painter(canvas) {
 
-function painter() {
-    function DrawPoint(canvas,vertex) {
-        var pointCanvas = document.createElement('canvas');
-        var context = pointCanvas.getContext("2d");
+
+    this.drawPolylines = function (canvas) {
+        //canvas
+        var canvasss = document.getElementById('mycanvas');
+        var context = canvasss.getContext('2d');
+
+        //paint lines
         context.beginPath();
-        context.lineWidth = 1;
-        context.fillStyle = 'yellow';
-        context.fillRect(50,50,200,100);
-            
-        }
+        context.lineWidth = 10;
+        context.storkeStylw = "black";
+        context.moveTo(20, 20);
+        context.lineTo(100, 20);
+        context.closePath();
+        context.stroke();
+    }
+
+    this.drawPoints = function (x, y) {
+        var point = document.createElement('div');
+        point.style.height = '2px';
+        point.style.width = '2px';
+        point.style.backgroundColor = 'red';
+        point.style.left = x + 'px';
+        point.style.top = y + 'px';
+        document.body.appendChild(point);
+        return point;
 
     }
 }

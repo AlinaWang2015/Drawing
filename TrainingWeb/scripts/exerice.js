@@ -1,11 +1,15 @@
-﻿var canvasss = document.getElementById('canvas');
-var context = canvasss.getContext('2d');
+﻿function drawPoints(x, y) {
+    var point = document.createElement('div');
+    //point.style.position = 'absolute';
+    point.style.height = '2px';
+    point.style.width = '2px';
+    point.style.backgroundColor = 'red';
+    point.style.left = x + 'px';
+    point.style.top = y + 'px';
+    document.body.appendChild(point);
+    return point;
+    
+}
 
-//hua xian
-context.beginPath();
-context.lineWidth = 10;
-context.storkeStylw = "#000";
-context.moveTo(20, 20);
-context.lineTo(100, 20);
-context.storke();
-context.colsePath();
+
+
