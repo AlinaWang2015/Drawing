@@ -8,27 +8,27 @@ namespace GeometryPainter
 {
     public class Style
     {
-        private Color burushColor = Color.Black;
-        private float brushWidth = 100;
+        private Color penColor = Color.Black;
+        private float penWidth = 100;
         private bool isFill = false;
 
-        public Color BurushColor
+        public Color PenColor
         {
-            get { return burushColor; }
+            get { return penColor; }
 
-            set { burushColor = value; }
+            set { penColor = value; }
         }
 
         public float BrushWidth
         {
             get
             {
-                return brushWidth;
+                return penWidth;
             }
 
             set
             {
-                brushWidth = value;
+                penWidth = value;
             }
         }
 
@@ -49,8 +49,8 @@ namespace GeometryPainter
 
         public Style(Color burushColor, float brushWidth, bool isFill)
         {
-            this.burushColor = burushColor;
-            this.brushWidth = brushWidth;
+            this.penColor = burushColor;
+            this.penWidth = brushWidth;
             this.isFill = isFill;
         }
     }

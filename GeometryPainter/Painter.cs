@@ -1,34 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeometryPainter
 {
     public static class Painter
     {
-        public static void DrawPoint( Style style, Canvas canvas, Point point)
+        public static Image CreateCanvas(Canvas canvas)
         {
-
             //show the canvas
             int width = (int)canvas.Width;
             int high = (int)canvas.Higth;
             Bitmap originImg = new Bitmap(width, high);
             Graphics graphics = Graphics.FromImage(originImg);
-
             //set the canvas background   
             graphics.Clear(canvas.Background);
             Image finishImg = (Image)originImg.Clone();
+            
+            return finishImg;
+        }
 
+        public static Pen SetPen(Style style)
+        {
             //set the pen
-            Pen pen = new Pen(style.BurushColor, style.BrushWidth);
-            pen.StartCap = LineCap.Round;
-            pen.EndCap = LineCap.Round;
+            Pen pen = new Pen(style.PenColor, style.BrushWidth);
+            //pen.StartCap = LineCap.Round;
+            //pen.EndCap = LineCap.Round;
 
-            for(int i=0;i<point.PartsBox.Count;i++)
+            return pen;
+        }
+
+        public static void DrawPoint( Pen pen, Image image, Point point)
+        {
+            Graphics graphics = Graphics.FromImage(image);
+            for (int i=0;i<point.PartsBox.Count;i++)
             {
                 for(int j=0;j<point.PartsBox[i];j++)
                 {
@@ -42,23 +46,9 @@ namespace GeometryPainter
             
         }
 
-        public static void DrawPolyline(Style style, Canvas canvas, Polyline polyline)
+        public static void DrawPolyline(Pen pen, Image image, Polyline polyline)
         {
-            //show the canvas
-            int width = (int)canvas.Width;
-            int high = (int)canvas.Higth;
-            Bitmap originImg = new Bitmap(width, high);
-            Graphics graphics = Graphics.FromImage(originImg);
-
-            //set the canvas background   
-            graphics.Clear(canvas.Background);
-           // Image finishImg = (Image)originImg.Clone();
-
-            //set the pen
-            Pen pen = new Pen(style.BurushColor, style.BrushWidth);
-            pen.StartCap = LineCap.Round;
-            pen.EndCap = LineCap.Round;
-
+            Graphics graphics = Graphics.FromImage(image);
             for (int i = 0; i < polyline.PartsBox.Count; i++)
             {
                 PointF[] tempoints = new PointF[polyline.PartsBox[i]];
@@ -73,24 +63,9 @@ namespace GeometryPainter
             
         }
 
-        public static void DrawPolygon(Style style, Canvas canvas, Polygon polygon)
+        public static void DrawPolygon(Pen pen, Image image, Polygon polygon)
         {
-            //show the canvas
-            int width = (int)canvas.Width;
-            int high = (int)canvas.Higth;
-            Bitmap originImg = new Bitmap(width, high);
-            Graphics graphics = Graphics.FromImage(originImg);
-
-            //set the canvas background   
-            graphics.Clear(canvas.Background);
-            Image finishImg = (Image)originImg.Clone();
-
-            //set the pen
-            Pen pen = new Pen(style.BurushColor, style.BrushWidth);
-            pen.StartCap = LineCap.Round;
-            pen.EndCap = LineCap.Round;
-
-
+            Graphics graphics = Graphics.FromImage(image);
             for (int i = 0; i < polygon.PartsBox.Count; i++)
             {
                 PointF[] tempoints = new PointF[polygon.PartsBox[i]];
@@ -104,33 +79,18 @@ namespace GeometryPainter
             }
         }
 
-        public static void DrawCircle(Style style, Canvas canvas, Circle circle)
+        public static void DrawCircle(Pen pen, Image image, Circle circle)
         {
-            //show the canvas
-            int width = (int)canvas.Width;
-            int high = (int)canvas.Higth;
-            Bitmap originImg = new Bitmap(width, high);
-            Graphics graphics = Graphics.FromImage(originImg);
-
-            //set the canvas background   
-            graphics.Clear(canvas.Background);
-            Image finishImg = (Image)originImg.Clone();
-
-            //set the pen
-            Pen pen = new Pen(style.BurushColor, style.BrushWidth);
-            pen.StartCap = LineCap.Round;
-            pen.EndCap = LineCap.Round;
-
+            Graphics graphics = Graphics.FromImage(image);
             PointF center = new PointF(circle.Center.X, circle.Center.Y);
-            //float temX = (center.X - points[1].X) * (center.X - points[1].X);
-            //float temY = (center.Y - points[1].Y) * (center.Y - points[1].Y);
-            //float radius = (float)Math.Sqrt(temX + temY);
-            
             graphics.DrawEllipse(pen, center.X, center.Y, 2 * circle.Radius, 2 * circle.Radius);
             
         }
 
-
+        public static void DrawGeometry(Pen pen, Image image, Geometry geo)
+        {
+            
+        }
 
     }
 }

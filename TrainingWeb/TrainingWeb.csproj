@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Html\lianxi.html" />
     <Content Include="Html\MyPainter.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">

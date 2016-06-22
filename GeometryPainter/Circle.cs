@@ -11,6 +11,8 @@ namespace GeometryPainter
         private Vertex center;
         private float radius;
 
+        internal Circle () { }
+
         public Vertex Center
         {
             get { return center; }
@@ -24,8 +26,6 @@ namespace GeometryPainter
 
             set { radius = value; }
         }
-
-        internal Circle () { }
 
         public Circle( List<Vertex> center, List<float> radius)
         {

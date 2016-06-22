@@ -15,11 +15,16 @@ namespace Training
     public partial class Form1 : Form
     {
         private string filepath;
+        Canvas canvas = new Canvas();
+        Style style = new Style();
+        Image g;
+        Pen p;
 
- 
         public Form1()
         {
             InitializeComponent();
+
+            Canvas canvas = new Canvas();
         }
 
         public string ShowFile( ShapeFile shapefile)
@@ -103,8 +108,7 @@ namespace Training
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Canvas canvas = new Canvas();
-            Style style = new Style();
+            
 
             List<Vertex> verticesBox = new List<Vertex>();
             var v1 = new Vertex(102, 101);
@@ -118,7 +122,14 @@ namespace Training
 
 
             GeometryPainter.Polyline polyline = new GeometryPainter.Polyline( "1",  verticesBox,  partsBox);
-            Painter.DrawPolyline( style, canvas, polyline);
+            Painter.DrawPolyline( p, g, polyline);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+             g = Painter.CreateCanvas(canvas);
+            p = Painter.SetPen(style);
+
         }
     }
 }

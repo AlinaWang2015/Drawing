@@ -2,14 +2,34 @@
 <html>
 <head>
     <title>mypainter</title>
-    <script src ="../scripts/exerice.js"> </script>
+    <script src ="../scripts/Painter.js"> </script>
 	<meta charset="utf-8" />
 </head>
 <body>
 
     
     <script>
-        var a = drawPoints(50,50); 
+        var c = new Canvas(600, 600, 'pink');
+        var s = new Style('green', '1');
+        var points = [];
+        points[0] = new Vertex(520, 520);
+        points[1] = new Vertex(102, 170);
+        points[2] = new Vertex(260, 220);
+        points[3] = new Vertex(320, 270);
+
+        var parts = [];
+        parts[0] = 4;
+        
+        var polyline = new PolylineGeometry(points);
+        var p = new Painter();
+        var l = p.drawPolylines(polyline,s);
+
+        var d = p.drawPoints(points, s);
+        var v = new Vertex(200, 100);
+        var c = p.drawCircle(v, 100, s)
+
+        var gon = new PolygonGeometry(points,parts)
+        var g = p.drawPolygon(points,s)
     </script>
 </body>
 </html>
