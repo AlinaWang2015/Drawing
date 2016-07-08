@@ -1,122 +1,183 @@
-﻿function Vertex(x,y) {
-    this.x = x;
-    this.y = y;
-}
+﻿
 
-function PointGeometry(vertexBox){
-    this.vertexBox = vertexBox;
-}
 
-function PolylineGeometry(v1, v2) {
 
-}
 
-function PolylineGeometry(vertexBox,partsBox){
-    this.vertexBox = vertexBox;
-    this.partsBox = partsBox;
-}
+var painter = (function () {
+    return {
+        style: function (penColor, penWidth) {
+            var canvasss = document.getElementById('mycanvas');
+            var context = canvasss.getContext('2d');
+            context.lineWidth = penWidth;
+            context.stroke.style = penColor;
+            return context;
+        },
 
-function PolygonGeometry(vertexBox,partsBox){
-    this.vertexBox = vertexBox;
-    this.partsBox = partsBox;
-}
+        canvas: function (height, width, background) {
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "mycanvas";
+            mycanvas.width = width;
+            mycanvas.height = height;
+            mycanvas.style.background = background;
+            document.body.appendChild(mycanvas);
+        },
 
-function CircleGeometry(center,radius){
-    this.centter = center;
-    this.radius = radius;
-}
+        Vertex: function (x, y) {
+            this.x = x;
+            this.y = y;
+        },
 
-var Geoemtry = {
-    Id:null,
-    vertexBox: [],
-    partsBox: []
-}
+        Line : function(v1,v2){
+            this.v1 = v1;
+            this.v2 = v2;
+            this.length = Math.sqrt(
+                Math.pow(v1.x - v2.x),
+                Math.pow(v1.y - v2.y)
+                );
+        },
 
-Style = function(penColor,penWidth){
-    this.penColor = penColor;
-    this.penWidth = penWidth;
+        Geometry:function ()  {
+            this.points = [];
+            this.lines = [];
+            this.initialization();
+        },
 
-}
+        PointGeometry: function (vertexBox) {
+            this.vertexBox = vertexBox;
+        },
 
-function Canvas(height, width, background) {
+        PolylineGeometry: function (vertexBox, partsBox) {
+            this.vertexBox = vertexBox;
+            this.partsBox = partsBox;
+        },
 
-    var mycanvas = document.createElement("canvas");
-    mycanvas.id = "mycanvas";
-    mycanvas.width = width;
-    mycanvas.height = height;
-    mycanvas.style.background = background;
-    document.body.appendChild(mycanvas)
+        PolygonGeometry: function (vertexBox, partsBox) {
+            this.vertexBox = vertexBox;
+            this.partsBox = partsBox;
+        },
 
-}
+        CircleGeometry: function (center, radius) {
+            this.centter = center;
+            this.radius = radius;
+        },
 
-function Painter() {
+        verify: function (input) {
 
-    this.drawPolylines = function (polyline,style) {
-        //canvas
-        var canvasss = document.getElementById('mycanvas');
-        var context = canvasss.getContext('2d');
-        
-        //paint lines
-        context.beginPath();
-        context.lineWidth = style.penWidth;
-        context.storkeStylw = style.penColor;
+            if (!isNaN(input)) {
+                if (!isFinite(input)) {
+                    alert("输入参数为一个即非infinity又非NaN的数字！");
+                } else {
+                    return input;
+                }
 
-        context.moveTo(polyline.vertexBox[0].x, polyline.vertexBox[0].y);
-        context.lineTo(polyline.vertexBox[1].x, polyline.vertexBox[1].y);
-        context.closePath();
-        context.stroke();
-        
+            } else {
+                var output = parseFloat(input);
+                return output;
+            }
+        },
+
+        drawPolylines: function (polyline, style) {
+            //canvas
+            var context = style;
+
+            context.beginPath();
+            for (var j = 0; j < polyline.partsBox; j++) {
+                for (var i = 0; i < polyline.partsBox[j]; i++) {
+                    context.moveTo(polyline.vertexBox[i].x, polyline.vertexBox[i].y);
+                    context.lineTo(polyline.vertexBox[i + 1].x, polyline.vertexBox[i + 1].y);
+                    context.closePath();
+                    context.stroke();
+                }
+            }
+
+        },
+
+        drawPolygon: function (polygon, style) {
+            //canvas
+            var context = style;
+
+            context.beginPath();
+            for (var j = 0; j < polygon.partsBox; j++) {
+                var temp = polygon.partsBox[j];
+                for (var i = 0; i < temp; i++) {
+                    context.moveTo(polygon.vertexBox[i].x, polygon.vertexBox[i].y);
+                    context.lineTo(polygon.vertexBox[i + 1].x, polygon.vertexBox[i + 1].y);
+
+                    context.closePath();
+                    context.stroke();
+                }
+            }
+        },
+
+        drawPoint: function (x,y,style) {
+            
+           
+                var oDiv = document.createElement('div');
+                oDiv.style.position = 'absolute';
+                oDiv.style.height = '5px';
+                oDiv.style.width = '5px';
+                oDiv.style.backgroundColor = 'black';
+                oDiv.style.left = x + 'px';
+                oDiv.style.top = y + 'px';
+                document.body.appendChild(oDiv);
+           
+           
+        },
+
+        drawCircle: function (vertex, r, style) {
+            var canvasss = document.getElementById('mycanvas');
+            var context = canvasss.getContext('2d');
+            //paint circle
+            context.beginPath();
+            context.lineWidth = style.penWidth;
+            context.storkeStylw = style.penColor;
+            context.arc(vertex.x, vertex.y, r, 0, Math.PI * 2, false);
+            context.stroke();
+            context.fill();
+        },
+
+
     }
+})();
 
-    this.drawPolygon = function (polygon, style) {
-        //canvas
-        var canvasss = document.getElementById('mycanvas');
-        var context = canvasss.getContext('2d');
-
-        //paint lines
-        context.beginPath();
-        context.lineWidth = style.penWidth;
-        context.storkeStylw = style.penColor;
-        context.moveTo(polyline.vertexBox[0].x, polyline.vertexBox[0].y);
-
-        for (var i = 1; i < polygon.vertexBox.length; i++) {
-            context.lineTo(polyline.vertexBox[i].x, polyline.vertexBox[i].y);
+painter.Geometry.prototype = {
+    // reset pointer to constructor
+    constructor: Geometry,
+    initialization: function () {
+        if (this.context === undefined) {
+            var canvas = document.getElementById('canvas');
+            Geometry.prototype.context = canvas.getContext('2d');
         }
-        
-        context.closePath();
-        context.stroke();
+    },
 
-    }
-
-    this.drawPoints = function (points,style) {
-        var canvasss = document.getElementById('mycanvas');
-        var context = canvasss.getContext('2d');
-
-        //paint points
-        context.beginPath();
-        context.lineWidth = style.penWidth;
-        context.storkeStylw = style.penColor;
-        for (var i = 0; i < points.length; i++) {
-            context.arc(points[i].x, points[i].y, 2, 0, Math.PI * 2, false);
+    getLines: function () {
+        if (this.lines > 0) {
+            return this.lines;
         }
-        
+        var i, lines = [];
+        for (i = 0; i < lines.length; i++) {
+            lines[i] = new painter.Line(this.points[i], this.points[i + 1] || this.points[0]);
+        }
+        this.lines = lines;
+        return lines;
+    },
 
-        context.fill();
+    getArea: function () { },
+
+    getPerimeter: function () {
+        var i, perimeter = 0, lines = this.getLines();
+        for (i = 0; i < lines.length; i++) {
+            perimeter += lines[i].length;
+        }
+        return perimeter;
     }
+};
 
-    this.drawCircle = function (vertex, r,style) {
 
-        var canvasss = document.getElementById('mycanvas');
-        var context = canvasss.getContext('2d');
-
-        //paint circle
-        context.beginPath();
-        context.lineWidth = style.penWidth;
-        context.storkeStylw = style.penColor;
-        context.arc(vertex.x, vertex.y, r, 0, Math.PI * 2, false);
-        context.stroke();
-        context.fill();
-
-    }
-
+(function () {
+    var geome = new painter.Geometry();
+    painter.PointGeometry.prototype = geome;
+    painter.PolygonGeometry.prototype = geome;
+    painter.PolygonGeometry.prototype = geome;
 }
+)();

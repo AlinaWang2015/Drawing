@@ -1,57 +1,61 @@
 ﻿using System.Drawing;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeometryPainter
 {
     public class Style
     {
-        private Color penColor = Color.Black;
-        private float penWidth = 100;
-        private bool isFill = false;
+        private Color penColor ;
+        private float penWidth ;
+        private bool isFill ;
+        private bool isSolidLine;
+
+        public Style()
+        {
+            PenColor = Color.Red;
+            BrushWidth = 10;
+            IsFill = false;
+            IsSolidLine = true;
+        }
+
+        public Style(Color penColor, float penWidth, bool isFill)
+        {
+            PenColor = penColor;
+            BrushWidth = penWidth;
+            IsFill = isFill;
+            IsSolidLine = true;
+        }
+
+        public Style(Color penColor, float penWidth, bool isFill, bool isSolidLine)
+        {
+            this.penColor = penColor;
+            this.penWidth = penWidth;
+            this.isFill = isFill;
+            this.isSolidLine = isSolidLine;
+        }
 
         public Color PenColor
         {
             get { return penColor; }
-
-            set { penColor = value; }
+            private set { penColor = value; }
         }
 
         public float BrushWidth
         {
-            get
-            {
-                return penWidth;
-            }
-
-            set
-            {
-                penWidth = value;
-            }
+            get { return penWidth; }
+            private set { penWidth = value; }
         }
 
         public bool IsFill
         {
-            get
-            {
-                return isFill;
-            }
-
-            set
-            {
-                isFill = value;
-            }
+            get { return isFill; }
+            private set { isFill = value; }
         }
 
-        public Style () { }
-
-        public Style(Color burushColor, float brushWidth, bool isFill)
+        public bool IsSolidLine
         {
-            this.penColor = burushColor;
-            this.penWidth = brushWidth;
-            this.isFill = isFill;
+            get { return isSolidLine; }
+
+            set { isSolidLine = value; }
         }
     }
 }

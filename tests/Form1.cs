@@ -16,7 +16,7 @@ namespace tests
         public Form1()
         {
             InitializeComponent();
-
+            Canvas canvas = new Canvas();
             g = Painter.CreateCanvas(canvas);
             p = Painter.SetPen(style);
             pictureBox1.Image = g;
@@ -40,8 +40,11 @@ namespace tests
 
 
 
-            GeometryPainter.Polyline polyline = new GeometryPainter.Polyline("1", verticesBox, partsBox);
+            GeometryPainter.PolylineGeometry polyline = new GeometryPainter.PolylineGeometry("1");
+            polyline.GetVertexBox.Add(v1); polyline.GetVertexBox.Add(v2); polyline.GetVertexBox.Add(v3);
+            
             Painter.DrawPolyline(p, g, polyline);
+            g.Save(@"c：\1\2.png");
         }
     }
 }

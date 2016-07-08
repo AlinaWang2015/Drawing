@@ -5,31 +5,79 @@ using System.Text;
 
 namespace GeometryPainter
 {
-    public class Vertex
+    public struct Vertex
     {
-        private float x;
-        private float y;
-
-        public float X
-        {
-            get { return x; }
-
-            set { x = value; }
-        }
-
-        public float Y
-        {
-            get { return y; }
-
-            set { y = value; }
-        }
-
-        public Vertex() { }
+        private double x;
+        private double y;
 
         public Vertex(float x, float y)
         {
             this.x = x;
             this.y = y;
+        }
+
+        public double X
+        {
+            get { return x; }
+            private set { x = value; }
+        }
+
+        public double Y
+        {
+            get { return y; }
+            private set { y = value; }
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)X ^ (int)Y;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Vertex otherVertex = (Vertex)obj;
+            if (otherVertex.X == X && otherVertex.Y == Y)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool operator ==(Vertex v1, Vertex v2)
+        {
+            return v1.Equals(v2);
+        }
+
+        public static bool operator !=(Vertex v1, Vertex v2)
+        {
+            return !v1.Equals(v2);
+        }
+
+        public override string ToString()
+        {
+            return ToString("G");
+        }
+
+        public string ToString(string format)
+        {
+            if (string.IsNullOrEmpty(format))
+                format = "G";
+
+            switch(format.ToUpperInvariant())
+            {
+                case "G":
+                    return string.Format("this vertex's coordinate is '{0}' and '{1}' ", x, y);
+                case "D":
+                    return string.Format("this vertex's coordinate is '{0}' and '{1}' ", x.ToString("D"), y.ToString("D"));
+                case "F":
+                    return string.Format("this vertex's coordinate is '{0}' and '{1}' ", x.ToString("F"), y.ToString("F"));
+                default:
+                    string message = string.Format("'{0}' is an invalid format string", format);
+                    throw new ArgumentException(message);
+            }
         }
     }
 }

@@ -1,51 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace GeometryPainter
 {
     public class Geometry
     {
         private string id;
-        private List<Vertex> vertexBox = new List<Vertex>();
-        private List<int> partsBox = new List<int>();
+        protected List<Vertex> vertexBox ;
+        protected List<int> partsBox ;
+        
+        public Geometry()
+        {
+            Id = "0";
+            partsBox = new List<int>();
+            vertexBox = new List<Vertex>();
+        }
+
+        public Geometry(string id)
+        {
+            Id = id;
+            partsBox = new List<int>();
+            vertexBox = new List<Vertex>();
+        }
 
         public string Id
         {
             get { return id; }
-
             protected set { id = value; }
         }
 
-        public List<Vertex> VertexBox
+        public List<Vertex> GetVertexBox
         {
             get { return vertexBox; }
-
-            protected set { vertexBox = value; }
         }
 
-        public List<int> PartsBox
+        public List<int> GetPartsBox
         {
             get { return partsBox; }
-
-            protected set { partsBox = value; }
-        }
-
-        public Geometry() { }
-
-        public Geometry(string id )
-        {
-            this.id = id;
-            
-        }
-
-        public Geometry( string id, List<Vertex> verticesBox, List<int> partsBox)
-        {
-            this.Id = id;
-            this.vertexBox = verticesBox;
-            this.partsBox = partsBox;
         }
     }
 }

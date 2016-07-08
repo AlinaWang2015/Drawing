@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{589CB0E3-4B64-4DE2-B6CE-18FE0C8E5FC9}</ProjectGuid>
+    <ProjectGuid>{22F5C5E6-8694-4777-BBAD-DAB593576196}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeometryPainter</RootNamespace>
-    <AssemblyName>GeometryPainter</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>Charts</RootNamespace>
+    <AssemblyName>Charts</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,19 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Canvas.cs" />
-    <Compile Include="ShapeType.cs" />
-    <Compile Include="Style.cs" />
-    <Compile Include="CircleGeometry.cs" />
-    <Compile Include="Painter.cs" />
-    <Compile Include="PointGeometry.cs" />
-    <Compile Include="PolygonGeometry.cs" />
-    <Compile Include="PolylineGeometry.cs" />
+    <Compile Include="ChartPainter.cs" />
+    <Compile Include="PieChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Geometry.cs" />
-    <Compile Include="Vertex.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GeometryPainter\GeometryPainter.csproj">
+      <Project>{589cb0e3-4b64-4de2-b6ce-18fe0c8e5fc9}</Project>
+      <Name>GeometryPainter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

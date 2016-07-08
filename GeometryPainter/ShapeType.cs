@@ -7,11 +7,11 @@ namespace GeometryPainter
 {
     public enum ShapeType
     {
-        None,
-        Point,
-        Circle,
-        Polyline,
-        Rect,
-        Polygon,
+        None = 0,
+        Point = 1,
+        Circle = 2,
+        Polyline = 3,
+        Rect = 4,
+        Polygon = 5,
     }
 }

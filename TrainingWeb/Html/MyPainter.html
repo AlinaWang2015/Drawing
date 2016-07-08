@@ -6,30 +6,39 @@
 	<meta charset="utf-8" />
 </head>
 <body>
-
     
     <script>
-        var c = new Canvas(600, 600, 'pink');
-        var s = new Style('green', '1');
+
+        var c = painter.canvas(600, 600, 'pink');
+        var s = painter.style('green', '1');
         var points = [];
-        points[0] = new Vertex(520, 520);
-        points[1] = new Vertex(102, 170);
-        points[2] = new Vertex(260, 220);
-        points[3] = new Vertex(320, 270);
+        points[0] = new painter.Vertex(520, 520);
+        points[1] = new points[0].constructor(102, 170);
+        points[2] = new points[0].constructor(260, 220);
+        points[3] = new points[0].constructor(320, 270);
+        points[4] = new painter.Vertex(520, 520);
 
         var parts = [];
-        parts[0] = 4;
-        
-        var polyline = new PolylineGeometry(points);
-        var p = new Painter();
-        var l = p.drawPolylines(polyline,s);
+        parts[0] = 5;
 
-        var d = p.drawPoints(points, s);
-        var v = new Vertex(200, 100);
-        var c = p.drawCircle(v, 100, s)
+        //draw polyline
+        //var polyline = new painter.PolylineGeometry(points, parts);
+        // painter.drawPolylines(polyline, s);
 
-        var gon = new PolygonGeometry(points,parts)
-        var g = p.drawPolygon(points,s)
+        // draw point
+        //painter.drawPoint(300, 300, s);
+        //painter.drawPoint(30, 30, s);
+        for (var i = 0; i < points.length; i++) {
+            // var v = new point();
+            painter.drawPoint(points[i].x, points[i].y, s);
+        }
+        //draw polygon
+        //var v = new painter.Vertex(200, 100);
+        //var v1 = new v.constructor(300, 300);
+        //var c = painter.drawCircle(v1, 100, s);
+
+        //var polygon = new painter.PolygonGeometry(points,parts)
+       //painter.drawPolygon(polygon,s)
     </script>
 </body>
 </html>

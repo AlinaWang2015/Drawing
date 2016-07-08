@@ -121,7 +121,8 @@ namespace Training
 
 
 
-            GeometryPainter.Polyline polyline = new GeometryPainter.Polyline( "1",  verticesBox,  partsBox);
+            GeometryPainter.PolylineGeometry polyline = new GeometryPainter.PolylineGeometry( "1");
+            polyline.GetVertexBox.Add(v1); polyline.GetVertexBox.Add(v2); polyline.GetVertexBox.Add(v3);
             Painter.DrawPolyline( p, g, polyline);
         }
 

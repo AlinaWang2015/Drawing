@@ -18,7 +18,7 @@ namespace GeometryPainter.Tests
             Canvas canvas = new Canvas();
             Image g = Painter.CreateCanvas(canvas);
 
-            Assert.AreEqual(700, g.Height);
+            Assert.AreEqual(300, g.Height);
            // Assert.AreEqual(Color.Red,g.)
         }
 
@@ -40,7 +40,7 @@ namespace GeometryPainter.Tests
         [TestMethod()]
         public void DrawPolylineTest()
         {
-            
+            Assert.Fail();
         }
 
         [TestMethod()]
