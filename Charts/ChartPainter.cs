@@ -11,17 +11,17 @@ namespace Charts
 {
     public static class ChartPainter
     {
-        public static void DrawPieChart(PieChart piechart)
+        public static void DrawPieChart(Canvas canvas, Style style, PieChart piechart)
         {
-            Canvas canvas = new Canvas();
-            Style style = new Style();
-            Image tu = Painter.CreateCanvas(canvas);
-            Pen pen = Painter.SetPen(style);
+            
+            //Pen pen = Painter.SetPen(style);
             Vertex center = new Vertex(300, 300);
-            CircleGeometry circle = new CircleGeometry("1",center, piechart.Radius);
-            CircleGeometry innerCircle = new CircleGeometry("2",center,piechart.Radius-20);
-            Painter.DrawCircle( pen, tu, innerCircle);
-            Painter.DrawCircle( pen, tu, circle);
+            //CircleGeometry circle = new CircleGeometry("1",center, piechart.Radius);
+            //CircleGeometry innerCircle = new CircleGeometry("2",center,piechart.Radius-20);
+            PieArc pie = new PieArc(center, 50, 50, 100, 100);
+            Painter.DrawPie(canvas, style, pie);
+            //Painter.DrawCircle( pen, tu, innerCircle);
+            //Painter.DrawCircle( pen, tu, circle);
         }
     }
 }

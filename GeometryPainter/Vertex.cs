@@ -7,22 +7,22 @@ namespace GeometryPainter
 {
     public struct Vertex
     {
-        private double x;
-        private double y;
+        private int x;
+        private int y;
 
-        public Vertex(float x, float y)
+        public Vertex(int x, int y)
         {
             this.x = x;
             this.y = y;
         }
 
-        public double X
+        public int X
         {
             get { return x; }
             private set { x = value; }
         }
 
-        public double Y
+        public int Y
         {
             get { return y; }
             private set { y = value; }

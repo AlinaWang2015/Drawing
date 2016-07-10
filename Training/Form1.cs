@@ -123,12 +123,12 @@ namespace Training
 
             GeometryPainter.PolylineGeometry polyline = new GeometryPainter.PolylineGeometry( "1");
             polyline.GetVertexBox.Add(v1); polyline.GetVertexBox.Add(v2); polyline.GetVertexBox.Add(v3);
-            Painter.DrawPolyline( p, g, polyline);
+           // Painter.DrawPolyline( p, g, polyline);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-             g = Painter.CreateCanvas(canvas);
+            // g = Painter.CreateCanvas(canvas);
             p = Painter.SetPen(style);
 
         }

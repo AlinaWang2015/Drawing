@@ -14,6 +14,11 @@ namespace Charts
         private double radius;
         private List<int> data;
 
+        public PieChart()
+        {
+
+        }
+
         public PieChart(string name, double radius, List<int> data)
         {
             this.Name = name;

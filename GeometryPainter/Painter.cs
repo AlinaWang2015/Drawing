@@ -5,20 +5,6 @@ namespace GeometryPainter
 {
     public static class Painter
     {
-        public static Image CreateCanvas(Canvas canvas)
-        {
-            //show the canvas
-            int width = (int)canvas.Width;
-            int high = (int)canvas.Higth;
-            Bitmap originImg = new Bitmap(width, high);
-            Graphics graphics = Graphics.FromImage(originImg);
-            //set the canvas background   
-            graphics.Clear(canvas.Background);
-            Image finishImg = (Image)originImg.Clone();
-            
-            return finishImg;
-        }
-
         public static Pen SetPen(Style style)
         {
             //set the pen
@@ -26,13 +12,14 @@ namespace GeometryPainter
             pen.DashStyle = DashStyle.Custom;
             //pen.StartCap = LineCap.Round;
             //pen.EndCap = LineCap.Round;
-
             return pen;
         }
 
-        public static void DrawPoint( Pen pen, Image image, PointGeometry point)
+        public static void DrawPoint( Canvas canvas,Style style, PointGeometry point)
         {
-            Graphics graphics = Graphics.FromImage(image);
+            //Bitmap originImg = new Bitmap(canvas.Width, canvas.Higth);
+            Graphics graphics = canvas.GetCanvas();
+            Pen pen = SetPen(style);
             for (int i=0;i<point.GetPartsBox.Count;i++)
             {
                 for(int j=0;j<point.GetPartsBox[i];j++)
@@ -47,9 +34,10 @@ namespace GeometryPainter
             
         }
 
-        public static void DrawPolyline(Pen pen, Image image, PolylineGeometry polyline)
+        public static void DrawPolyline(Canvas canvas, Style style, PolylineGeometry polyline)
         {
-            Graphics graphics = Graphics.FromImage(image);
+            Graphics graphics = canvas.GetCanvas();
+            Pen pen = SetPen(style);
             for (int i = 0; i < polyline.GetPartsBox.Count; i++)
             {
                 PointF[] tempoints = new PointF[polyline.GetPartsBox[i]];
@@ -64,9 +52,10 @@ namespace GeometryPainter
             
         }
 
-        public static void DrawPolygon(Pen pen, Image image, PolygonGeometry polygon)
+        public static void DrawPolygon(Canvas canvas, Style style, PolygonGeometry polygon)
         {
-            Graphics graphics = Graphics.FromImage(image);
+            Graphics graphics = canvas.GetCanvas();
+            Pen pen = SetPen(style);
             for (int i = 0; i < polygon.GetPartsBox.Count; i++)
             {
                 PointF[] tempoints = new PointF[polygon.GetPartsBox[i]];
@@ -80,17 +69,20 @@ namespace GeometryPainter
             }
         }
 
-        public static void DrawCircle(Pen pen, Image image, CircleGeometry circle)
+        public static void DrawCircle(Canvas canvas, Style style, CircleGeometry circle)
         {
-            Graphics graphics = Graphics.FromImage(image);
+            Graphics graphics = canvas.GetCanvas();
+            Pen pen = SetPen(style);
             PointF center = new PointF((int)circle.Center.X, (int)circle.Center.Y);
             graphics.DrawEllipse(pen, center.X, center.Y, 2 * circle.Radius, 2 * circle.Radius);
             
         }
 
-        public static void DrawGeometry(Pen pen, Image image, Geometry geo)
+        public static void DrawPie(Canvas canvas, Style style, PieArc pie)
         {
-            
+            Graphics graphics = canvas.GetCanvas();
+            Pen pen = SetPen(style);
+            graphics.DrawPie(pen,pie.Center.X,pie.Center.Y,pie.Width,pie.Height,pie.StartAngle,pie.SweepAngle);
         }
 
     }
