@@ -9,7 +9,7 @@ namespace GeometryPainter
     public class CircleGeometry:Geometry
     {
         private Vertex center;
-        private double radius;
+        private int radius;
 
         public CircleGeometry()
         {
@@ -19,7 +19,7 @@ namespace GeometryPainter
             Radius = 0;
         }
 
-        public CircleGeometry(string id, Vertex center, double radius)
+        public CircleGeometry(string id, Vertex center, int radius)
         {
             Id = id;
             Center = center;
@@ -33,7 +33,7 @@ namespace GeometryPainter
             set { center = value; }
         }
 
-        public double Radius
+        public int Radius
         {
             get { return radius; }
 

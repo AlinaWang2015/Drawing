@@ -11,10 +11,12 @@ namespace Charts
     {
         private string name;
         private int type;
-        private double radius;
+        private int radius;
+        private PieGeometry pie;
         private List<int> data;
+        private List<int> showData;
 
-        public PieChart(string name, double radius, List<int> data)
+        public PieChart(string name, int radius, List<int> data)
         {
             this.Name = name;
             this.Radius = radius;
@@ -26,14 +28,14 @@ namespace Charts
             get { return name; }
             set { name = value; }
         }
-
+        
         public int Type
         {
             get { return type; }
             private set { type = value; }
         }
 
-        public double Radius
+        public int Radius
         {
             get { return radius; }
             set { radius = value; }
@@ -45,6 +47,26 @@ namespace Charts
             private set { data = value; }
         }
 
-       
+       //public bool IsEmphasis()
+       // {
+       //     if()
+       // }
+
+        public float GetStartAngle()
+        {
+            float sumData=0;
+            float startAngle = 0;
+            foreach(var itemData in data)
+            {
+                sumData += itemData;
+            }
+
+            for(int i=0;i<data.Count;i++)
+            {
+                startAngle = Convert.ToSingle(data[i] / sumData * 360);
+            }
+
+            return startAngle;
+        }
     }
 }

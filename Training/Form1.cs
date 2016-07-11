@@ -114,7 +114,9 @@ namespace Training
             var v1 = new Vertex(102, 101);
             var v2 = new Vertex(0, 214);
             var v3 = new Vertex(27, 21);
-            verticesBox.Add(v1);verticesBox.Add(v2);verticesBox.Add(v3);
+            verticesBox.Add(v1);
+            verticesBox.Add(v2);
+            verticesBox.Add(v3);
 
             List<int> partsBox = new List<int>();
             partsBox.Add(3);
@@ -122,14 +124,16 @@ namespace Training
 
 
             GeometryPainter.PolylineGeometry polyline = new GeometryPainter.PolylineGeometry( "1");
-            polyline.GetVertexBox.Add(v1); polyline.GetVertexBox.Add(v2); polyline.GetVertexBox.Add(v3);
-            Painter.DrawPolyline( p, g, polyline);
+            polyline.GetVertexBox.Add(v1);
+            polyline.GetVertexBox.Add(v2);
+            polyline.GetVertexBox.Add(v3);
+            polyline.GetPartsBox.Add(3);
+            Painter.DrawPolyline(style, canvas, polyline);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-             g = Painter.CreateCanvas(canvas);
-            p = Painter.SetPen(style);
+            
 
         }
     }

@@ -11,17 +11,30 @@ namespace Charts
 {
     public static class ChartPainter
     {
+
         public static void DrawPieChart(PieChart piechart)
         {
             Canvas canvas = new Canvas();
             Style style = new Style();
-            Image tu = Painter.CreateCanvas(canvas);
-            Pen pen = Painter.SetPen(style);
             Vertex center = new Vertex(300, 300);
-            CircleGeometry circle = new CircleGeometry("1",center, piechart.Radius);
-            CircleGeometry innerCircle = new CircleGeometry("2",center,piechart.Radius-20);
-            Painter.DrawCircle( pen, tu, innerCircle);
-            Painter.DrawCircle( pen, tu, circle);
+
+            float sumData = 0;
+            float currentAngle = 0;
+            float totalAngle = 0;
+            foreach (var itemData in piechart.Data)
+            {
+                sumData += itemData;
+            }
+
+            for (int i = 0; i < piechart.Data.Count; i++)
+            {
+                currentAngle = Convert.ToSingle(piechart.Data[i] / sumData * 360);
+                PieGeometry pie = new PieGeometry(center, 400, 400, totalAngle, currentAngle);
+                totalAngle += currentAngle;
+                Painter.Drawpie(style, canvas, pie);
+            }
+
+
         }
     }
 }

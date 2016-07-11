@@ -4,15 +4,15 @@ namespace GeometryPainter
 {
     public class Canvas
     {
-        private float width ;
-        private float higth ;
+        private int width ;
+        private int higth ;
         private Color background ;
 
         public Canvas()
         {
             Width = 400;
             Higth = 400;
-            Background = Color.White;
+            Background = Color.GreenYellow;
         }
 
         public Canvas(Color background)
@@ -22,27 +22,27 @@ namespace GeometryPainter
             Background = background;
         }
 
-        public Canvas(float width, float higth)
+        public Canvas(int width, int higth)
         {
             Width = width;
             Higth = higth;
             Background = Color.White;
         }
 
-        public Canvas(float width, float higth, Color background)
+        public Canvas(int width, float higth, Color background)
         {
             Width = width;
             Higth = Higth;
             Background = background;
         }
 
-        public float Width
+        public int Width
         {
             get { return width; }
             set { width = value; }
         }
 
-        public float Higth
+        public int Higth
         {
             get { return higth; }
             set { higth = value; }
@@ -54,5 +54,16 @@ namespace GeometryPainter
             set { background = value; }
         }
 
+        public Bitmap GetCanvas()
+        {
+            //show the canvas
+            Bitmap originImg = new Bitmap(Width, Higth);
+            Graphics graphics = Graphics.FromImage(originImg);
+            //set the canvas background   
+            graphics.Clear(Background);
+            //Image finishImg = (Image)originImg.Clone();
+            //originImg.Save(@"c:\1\2.jpg");
+            return originImg;
+        }
     }
 }

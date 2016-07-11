@@ -11,16 +11,16 @@ namespace GeometryPainter.Tests
     [TestClass()]
     public class PainterTests
     {
-        [TestMethod()]
-        public void CreateCanvasTest()
-        {
+    //    [TestMethod()]
+    //    public void CreateCanvasTest()
+    //    {
             
-            Canvas canvas = new Canvas();
-            Image g = Painter.CreateCanvas(canvas);
+    //        Canvas canvas = new Canvas();
+    //        Image g = Painter.CreateCanvas(canvas);
 
-            Assert.AreEqual(300, g.Height);
-           // Assert.AreEqual(Color.Red,g.)
-        }
+    //        Assert.AreEqual(300, g.Height);
+    //       // Assert.AreEqual(Color.Red,g.)
+    //    }
 
         [TestMethod()]
         public void SetPenTest()

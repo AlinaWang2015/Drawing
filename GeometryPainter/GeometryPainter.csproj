@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Canvas.cs" />
+    <Compile Include="PieGeometry.cs" />
     <Compile Include="ShapeType.cs" />
     <Compile Include="Style.cs" />
     <Compile Include="CircleGeometry.cs" />
