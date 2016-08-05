@@ -16,14 +16,14 @@
         var colors = ["#91C7AE", "#C23531", "#2F4554", "#61A0A8", "#D48265"]
         var center = new PointGeometry(200, 200);
         //var pie = new chart(datas, colors, center, 100);
-        chartsPainter.PieChart(datas,colors,center,100).drawPie(canvas);
-
+        chartsPainter.pie=new chartsPainter.PieChart(datas,colors,center,100);
+        chartsPainter.pie.drawPie(canvas);
         //pie.drawPie(canvas);
         //pie.drawLegend(canvas);
 
         var series = ["CO", "CO2", "NO", "NO2", "PM10", "PM2.5"];
         var data = [54,84,64,86,147,111];
-        var radar = new RadarChart(center, 100, 250,0,4, series, data);
+        //var radar = new RadarChart(center, 100, 250,0,4, series, data);
         //radar.drawRadar(canvas);
     </script>
 </body>

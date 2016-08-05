@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>charts</title>
+    <script src="../scripts/Charts.js"></script>
+    <!--<script src="../scripts/Painter.js"></script>-->
+</head>
+<body>
+    <script>
+        var canvas = new Canvas(600, 600, '#fff');
+        var datas = [[20, "中国"], [35, "德国"], [45, "美国"], [57, "法国"], [78, "英国"]];
+        var colors = ["#91C7AE", "#C23531", "#2F4554", "#61A0A8", "#D48265"]
+        var center = new PointGeometry(200, 200);
+        var pie = new PieChart(datas, colors, center, 100);
+        // pie.drawPie(canvas);
+        //pie.drawLegend(canvas);
+        
+
+        var series = ["CO", "CO2", "NO", "NO2", "PM10", "PM2.5"];
+        var data = [54,84,64,86,147,111];
+        var radar = new radarChart(center, 100, 4, series, data);
+        //radar.drawRadar(canvas);
+    </script>
+    
+</body>
+
+</html>

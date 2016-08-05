@@ -1,6 +1,6 @@
 ﻿
 // reference the painter library
-document.write("<script language=javascript src='/scripts/Painter.js'></script>");
+document.write("<script language=javascript src='/js/Painter.js'></script>");
 
 var chartsPainter = {};
 
@@ -61,7 +61,7 @@ chartsPainter.PieChart = function (datas, colors, center, radius) {
     };
 }
 
-function RadarChart(center, maxRadius, maxData, minData, numCircle, series, data) {
+chartsPainter.RadarChart = function(center, maxRadius, maxData, minData, numCircle, series, data) {
     this.center = center;
     this.maxRadius = maxRadius;
     this.numCircle = numCircle;
