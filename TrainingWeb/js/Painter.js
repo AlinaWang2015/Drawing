@@ -1,34 +1,18 @@
-﻿
-/*get the user input */
-function ChangInput(id) {
-    var tep = document.getElementById(id);
-
-    if (!isNaN(tep)) {
-        if (!isFinite(tep)) {
-            alert("输入参数为一个即非infinity又非NaN的数字！");
-        } else {
-            alert("输入的参数为数字！")
-        }
-
-    } else {
-        var output = parseFloat(tep);
-        return output;
-    }
-}
+﻿var Painter = {}
 
 ///*the parent object geometry */
-function Vertice(x, y) {
+Painter.Vertice = function (x, y) {
     this.x = x;
     this.y = y;
 }
 
-function Geometry() {
+Painter.Geometry = function () {
     this.points = [];
     this.parts = [];
 }
 
-Geometry.prototype = {
-    construction: Geometry,
+Painter.Geometry.prototype = {
+    construction: Painter.Geometry,
     getColor: function (style) {
         return style.color;
     },
@@ -43,18 +27,18 @@ Geometry.prototype = {
 }
 
 ///*the child object */
-function PointGeometry(x, y) {
+Painter.Geometry.PointGeometry = function (x, y) {
     this.x = x;
     this.y = y;
 }
 
-function PolylineGeometry(points) {
+Painter.Geometry.PolylineGeometry = function(points) {
     this.points = points;
     this.length = function () {
     }
 }
 
-function PolygonGeometry(points, parts) {
+Painter.Geometry.PolygonGeometry = function(points, parts) {
     this.points = points;
     this.parts = parts;
     this.getArea = function () {
@@ -67,29 +51,27 @@ function CircleGeometry(center, radius) {
 }
 
 (function () {
-    var geometry = new Geometry();
-    PointGeometry.prototype = geometry;
-    PolygonGeometry.prototype = geometry;
-    PolylineGeometry.prototype = geometry;
+    var geometry = new Painter.Geometry();
+    Painter.Geometry.PointGeometry.prototype = geometry;
+    Painter.Geometry.PolygonGeometry.prototype = geometry;
+    Painter.Geometry.PolylineGeometry.prototype = geometry;
 })();
 
-/*the style */
-function Style(penColor, penWidth, isFill, fillColor) {
+Painter.Style = function(penColor, penWidth, isFill, fillColor) {
     this.penColor = penColor;
     this.penWidth = penWidth;
     this.isFill = isFill;
     this.fillColor = fillColor;
 }
 
-//the canvas
-function Canvas(id, height, width, background) {
+Painter.Canvas = function (id, height, width, background) {
     this.id = id;
     this.height = height;
     this.width = width;
     this.background = background;
 }
 
-var painter = (function () {
+Painter.Drawing = (function () {
     return {
         drawPoint: function (canvas, style, x, y) {
             var canvasss = document.getElementById(canvas.id),

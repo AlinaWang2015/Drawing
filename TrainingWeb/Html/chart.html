@@ -8,23 +8,24 @@
 </head>
 <body>
     <div>
-        <canvas id="mycanvas" width="400" height="400"></canvas>
+        <canvas id="mycanvas" width="600" height="600"></canvas>
     </div>
     <script>
-        var canvas = new Canvas("mycanvas",600, 600, '#fff');
-        var datas = [[20, "中国"], [35, "德国"], [45, "美国"], [57, "法国"], [78, "英国"]];
-        var colors = ["#91C7AE", "#C23531", "#2F4554", "#61A0A8", "#D48265"]
-        var center = new PointGeometry(200, 200);
-        //var pie = new chart(datas, colors, center, 100);
-        chartsPainter.pie=new chartsPainter.PieChart(datas,colors,center,100);
-        chartsPainter.pie.drawPie(canvas);
-        //pie.drawPie(canvas);
-        //pie.drawLegend(canvas);
 
-        var series = ["CO", "CO2", "NO", "NO2", "PM10", "PM2.5"];
-        var data = [54,84,64,86,147,111];
-        //var radar = new RadarChart(center, 100, 250,0,4, series, data);
-        //radar.drawRadar(canvas);
+        Painter.myCanvas = new Painter.Canvas("mycanvas", 600, 600, '#fff');
+        Painter.datas = [[20, "中国"], [35, "德国"], [45, "美国"], [57, "法国"], [78, "英国"]];
+        Painter.colors = ["#91C7AE", "#C23531", "#2F4554", "#61A0A8", "#D48265"]
+        Painter.center = new Painter.Geometry.PointGeometry(120, 120);
+        Painter.pie = new ChartPainter.Charts.PieChart(Painter.datas, Painter.colors,
+        	          Painter.center, 100);
+        Painter.pie.draw(Painter.myCanvas);
+
+        Painter.series = ["CO", "CO2", "NO", "NO2", "PM10", "PM2.5"];
+        Painter.data = [54, 84, 64, 86, 147, 111];
+        Painter.mycenter = new Painter.Geometry.PointGeometry(120, 340);
+        Painter.radar = new ChartPainter.Charts.RadarChart(Painter.mycenter, 100, 250, 0, 4,
+        	            Painter.series, Painter.data);
+        Painter.radar.draw(Painter.myCanvas);
     </script>
 </body>
 </html>
