@@ -30,8 +30,9 @@ ChartPainter.Charts.PieChart = function (datas, colors, center, radius) {
             Painter.Drawing.drawSector(canvas, pieStyle, center, radius, startAngle, endAngle, false);
             startAngle = endAngle;
         }
+        drawLegend
     };
-    this.drawLegend = function (canvas) {
+    drawLegend = function (canvas) {
         var i, legendStyle, point, textStyle;
 
         // draw the rectangle
@@ -70,12 +71,12 @@ ChartPainter.Charts.RadarChart = function (center, maxRadius, maxData, minData, 
     this.maxDate = maxData;
     this.minData = minData;
     this.draw = function (canvas) {
-        this.drawConcentricCircles(canvas);
-        this.drawSeries(canvas);
-        this.drawDataLine(canvas);
-    }
+        drawConcentricCircles(canvas);
+        drawSeries(canvas);
+        drawDataLine(canvas);
+    };
 
-    this.drawConcentricCircles = function (canvas) {
+    drawConcentricCircles = function (canvas) {
         var i,
     	    PERRADIUS = maxRadius / numCircle,
             tempRadius = maxRadius,
@@ -86,9 +87,9 @@ ChartPainter.Charts.RadarChart = function (center, maxRadius, maxData, minData, 
             Painter.Drawing.drawCircle(canvas, circleStyle, center, tempRadius);
             tempRadius -= PERRADIUS;
         }
-    }
+    };
 
-    this.drawSeries = function (canvas) {
+    drawSeries = function (canvas) {
         var i, endPoint,
     	    seriesStyle = new Painter.Style("rgba(255,227,188,99)", 2, false),
             tempAngle = 0,
@@ -124,9 +125,9 @@ ChartPainter.Charts.RadarChart = function (center, maxRadius, maxData, minData, 
             }
             tempAngle += PER_ANGLE;
         }
-    }
+    };
 
-    this.drawDataLine = function (canvas) {
+    drawDataLine = function (canvas) {
         var i, r, temX, temY, pointsLength, polygon,
             points = [],
             parts = [],
@@ -166,7 +167,7 @@ ChartPainter.Charts.RadarChart = function (center, maxRadius, maxData, minData, 
         parts = [series.length + 1];
         polygon = new Painter.Geometry.PolygonGeometry(points, parts);
         Painter.Drawing.drawPolygon(canvas, dataStyle, polygon);
-    }
+    };
 
 
 }
