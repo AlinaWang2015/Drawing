@@ -6,8 +6,50 @@
 	<meta charset="utf-8" />
 </head>
 <body>
-    <script>
-        console.log(a);
+    <script type="text/javascript">
+
+        /*
+         * param1 Array
+         * param2 Array
+         * return true or false
+         */
+        function arraysSimilar(arr1, arr2){
+            var i,
+                arr1Type,
+                arr2Type;
+
+            if((Object.prototype.toString.apply([]) === "[object Array]") &&
+                (Object.prototype.toString.apply([]) === "[object Array]")){
+
+
+                if(arr1.length === arr2.length){
+
+                    for (i=0;i<arr1.length;i++){
+                        arr1Type[i].push(Object.prototype.toString.apply(arr1[i]));
+                        arr2Type[i].push(Object.prototype.toString.apply(arr2[i]))
+                    }
+
+                    arr1Type.sort();
+                    arr2Type.sort();
+
+                    for(i=0;i<arr1Type.length;i++){
+                        if(arr1Type[i] !=arr2Type[i]){
+                            return false;
+                            break;
+                        }
+                    }
+
+                    return true;
+
+                }else{
+                    return false;
+                }
+            }else {
+                return false;
+            }
+
+        }
     </script>
+    <script src="../scripts/exerice.js"></script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Charts.Chart">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAQgAAAEYAAAAFABAAEQAQAAAAAAA=</HashCode>
+      <FileName>Chart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charts.ConcentricCirclesShape" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAgAAAgAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAACAA=</HashCode>
+      <FileName>ConcentricCirclesShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charts.DataLineShape" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataLineShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charts.FanShape" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAABAAAAAYAQAACAEAAAAAAAIAAgAAAAIAIAAA=</HashCode>
+      <FileName>FanShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charts.PieChart" Collapsed="true">
+    <Position X="3" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAIAAAACAAAAAAAAAAAAAAAAAABAAAACAAAAAAAAAA=</HashCode>
+      <FileName>PieChart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charts.RaderChart" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAE=</HashCode>
+      <FileName>RaderChart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charts.SplitLineShape" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAABAAAAAQAAAAAAA=</HashCode>
+      <FileName>SplitLineShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Charts.Coordinate" Collapsed="true">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAAAAAAAAAIAAAABgAAAAYiA=</HashCode>
+      <FileName>Coordinate.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

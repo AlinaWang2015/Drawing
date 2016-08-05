@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training", "Training\Training.csproj", "{449C8406-0FCA-4247-B000-8AA582B7012A}"
 EndProject
@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingWeb", "TrainingWeb\TrainingWeb.csproj", "{E63A3C54-6772-455F-B56E-D74DE9325A0E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShapeFileReader", "ShapeFileReader", "{CA69CB88-9FFB-458A-93B3-59C819EEEFB1}"
+	ProjectSection(SolutionItems) = preProject
+		TrainingWeb\scripts\Painter.js = TrainingWeb\scripts\Painter.js
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{503E7613-E63D-4711-99DC-E6260EB79265}"
 EndProject
